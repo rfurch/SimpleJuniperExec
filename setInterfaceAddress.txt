@@ -1,0 +1,144 @@
+SSH connection established to 192.168.225.5
+--- JUNOS 12.1R1.9 built 2012-03-24 12:52:33 UTC
+[3g[24;9HH[24;17HH[24;25HH[24;33HH[24;41HH[24;49HH[24;57HH[24;65HH[24;73HH
+cli
+root@R1% cli
+root@R1> set cli screen-length 0 
+Screen length set to 0
+
+root@R1> 
+configure 
+Entering configuration mode
+Users currently editing the configuration:
+  root terminal v0 (pid 1490) on since 2019-03-13 07:08:26 UTC, idle 00:30:52
+      [edit]
+
+[edit]
+root@R1# 
+Executing Command: 
+set interfaces lo0.2001 family inet address 10.10.10.1/24 
+
+[edit]
+root@R1# 
+Executing Command: 
+commit 
+commit complete
+
+[edit]
+root@R1# 
+Executing Command: 
+run show configuration 
+## Last commit: 2019-03-13 08:09:35 UTC by root
+version 12.1R1.9;
+system {
+    host-name R1;
+    root-authentication {
+        encrypted-password "$1$ggd2n9TE$Vt6AEhW3dn/2jc3R1seQC0"; ## SECRET-DATA
+    }
+    services {
+        ssh {
+            root-login allow;
+        }
+    }
+    syslog {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+    }
+}
+interfaces {
+    em1 {
+        unit 0 {
+            family inet {
+                address 192.168.225.5/24;
+            }
+        }
+    }
+    em2 {
+        unit 0 {
+            family inet {
+                address 10.0.0.1/24;
+            }
+        }
+    }
+    lo0 {
+        unit 2001 {
+            family inet {
+                address 10.10.10.1/24;
+            }
+        }
+    }
+}
+
+[edit]
+root@R1# 
+Executing Command: 
+delete interfaces lo0.2001 family inet address 10.10.10.1/24 
+
+[edit]
+root@R1# 
+Executing Command: 
+commit 
+commit complete
+
+[edit]
+root@R1# 
+Executing Command: 
+run show configuration 
+## Last commit: 2019-03-13 08:09:38 UTC by root
+version 12.1R1.9;
+system {
+    host-name R1;
+    root-authentication {
+        encrypted-password "$1$ggd2n9TE$Vt6AEhW3dn/2jc3R1seQC0"; ## SECRET-DATA
+    }
+    services {
+        ssh {
+            root-login allow;
+        }
+    }
+    syslog {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+    }
+}
+interfaces {
+    em1 {
+        unit 0 {
+            family inet {
+                address 192.168.225.5/24;
+            }
+        }
+    }
+    em2 {
+        unit 0 {
+            family inet {
+                address 10.0.0.1/24;
+            }
+        }
+    }
+    lo0 {
+        unit 2001 {
+            family inet;
+        }
+    }
+}
+
+[edit]
+root@R1# 
+Closing Connection to 192.168.225.5
